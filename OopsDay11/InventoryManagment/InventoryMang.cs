@@ -15,7 +15,7 @@ namespace OopsDay11.InventoryManagment
             List<Inventory> inventories = JsonConvert.DeserializeObject<List<Inventory>>(JsonData);
             foreach(var data in inventories)
             {
-                Console.WriteLine(data.Name + " \n "+ data.Weight +" \n " + data.Price);
+                Console.WriteLine(data.Name + "  "+ data.Weight +"  " + data.Price);
             }
         }
     }
