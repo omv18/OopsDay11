@@ -38,5 +38,46 @@ namespace OopsDay11.InventoryDataManagment
             }
             Console.WriteLine();
         }
+
+        public void AddInventoryData(string inventoryName)
+        {
+            Inventory inventory = new Inventory();
+            switch (inventoryName)
+            {
+                case "Rice":
+                    Console.Write("Enter the name : ");
+                    inventory.Name = Console.ReadLine();
+                    Console.Write("Enter the Weight : ");
+                    inventory.Weight = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter the Price");
+                    inventory.Price = Convert.ToDouble(Console.ReadLine());
+                    RiceList.Add(inventory);
+                    break;
+                case "Wheat":
+                    Console.Write("Enter the name : ");
+                    inventory.Name = Console.ReadLine();
+                    Console.Write("Enter the Weight : ");
+                    inventory.Weight = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter the Price");
+                    inventory.Price = Convert.ToDouble(Console.ReadLine());
+                    WheatList.Add(inventory);
+                    break ;
+                case "pulse":
+                    Console.Write("Enter the name : ");
+                    inventory.Name = Console.ReadLine();
+                    Console.Write("Enter the Weight : ");
+                    inventory.Weight = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter the Price");
+                    inventory.Price = Convert.ToDouble(Console.ReadLine());
+                    PulseList.Add(inventory);
+                    break;
+            }
+        }
+
+        public void WriteJsonFile(string file)
+        {
+            var json = JsonConvert.SerializeObject(inventoryData);
+            File.WriteAllText(file, json);
+        }
     }
 }

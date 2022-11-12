@@ -1,1 +1,58 @@
-{"Rice":[{"Name":"A","Weight":10,"Price":20.0},{"Name":"B","Weight":30,"Price":40.0},{"Name":"C","Weight":50,"Price":60.0}],"Wheat":[{"Name":"A","Weight":110,"Price":120.0},{"Name":"B","Weight":130,"Price":140.0},{"Name":"C","Weight":150,"Price":160.0}],"Pulse":[{"Name":"A","Weight":210,"Price":220.0},{"Name":"B","Weight":230,"Price":240.0},{"Name":"C","Weight":250,"Price":260.0}]}
+{
+  "Rice": [
+    {
+      "Name": "A",
+      "Weight": 10,
+      "Price": 20.0
+    },
+    {
+      "Name": "B",
+      "Weight": 30,
+      "Price": 40.0
+    },
+    {
+      "Name": "C",
+      "Weight": 50,
+      "Price": 60.0
+    },
+    {
+      "Name": "D",
+      "Weight": 500,
+      "Price": 500.0
+    }
+  ],
+  "Wheat": [
+    {
+      "Name": "A",
+      "Weight": 110,
+      "Price": 120.0
+    },
+    {
+      "Name": "B",
+      "Weight": 130,
+      "Price": 140.0
+    },
+    {
+      "Name": "C",
+      "Weight": 150,
+      "Price": 160.0
+    }
+  ],
+  "Pulse": [
+    {
+      "Name": "A",
+      "Weight": 210,
+      "Price": 220.0
+    },
+    {
+      "Name": "B",
+      "Weight": 230,
+      "Price": 240.0
+    },
+    {
+      "Name": "C",
+      "Weight": 250,
+      "Price": 260.0
+    }
+  ]
+}
