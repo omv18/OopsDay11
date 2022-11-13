@@ -12,7 +12,7 @@ namespace OopsDay11
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Enter 1.Inventoey Managment 2.Inventory Data managment - Read and Display ");
+                Console.WriteLine("Enter 1.Inventoey Managment 2.Inventory Data managment(IDM) - Read and Display 3.IDM - ADD 4. IDM - Edit ");
                 int option = Convert.ToInt32(Console.ReadLine());
                 InventoryMang inventoryMang = new InventoryMang();
                 InventoryDataMange inventoryDataMange = new InventoryDataMange();
@@ -23,13 +23,19 @@ namespace OopsDay11
                         break;
                     case 2:
                         inventoryDataMange.ReadJsonFile(inventoryFileData);
-                        inventoryDataMange.Display();
                         break;
                     case 3:
                         inventoryDataMange.ReadJsonFile(inventoryFileData);
                         Console.Write("Enter Inventory Name to add(Rice, Wheat, Pulse) : ");
                         string addName = Console.ReadLine();
                         inventoryDataMange.AddInventoryData(addName);
+                        inventoryDataMange.WriteJsonFile(inventoryFileData);
+                        break;
+                    case 4:
+                        inventoryDataMange.ReadJsonFile(inventoryFileData);
+                        Console.Write("Enter Inventory Name to add(Rice, Wheat, Pulse) : ");
+                        string editName = Console.ReadLine();
+                        inventoryDataMange.EditInventoryData(editName);
                         inventoryDataMange.WriteJsonFile(inventoryFileData);
                         break;
                     default:

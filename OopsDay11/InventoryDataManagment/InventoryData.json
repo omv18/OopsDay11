@@ -16,9 +16,14 @@
       "Price": 60.0
     },
     {
-      "Name": "D",
-      "Weight": 500,
-      "Price": 500.0
+      "Name": "L",
+      "Weight": 99,
+      "Price": 999.0
+    },
+    {
+      "Name": "H",
+      "Weight": 23,
+      "Price": 54.0
     }
   ],
   "Wheat": [
@@ -36,6 +41,11 @@
       "Name": "C",
       "Weight": 150,
       "Price": 160.0
+    },
+    {
+      "Name": "D",
+      "Weight": 270,
+      "Price": 280.0
     }
   ],
   "Pulse": [
@@ -53,6 +63,11 @@
       "Name": "C",
       "Weight": 250,
       "Price": 260.0
+    },
+    {
+      "Name": "P",
+      "Weight": 80,
+      "Price": 88.0
     }
   ]
 }
