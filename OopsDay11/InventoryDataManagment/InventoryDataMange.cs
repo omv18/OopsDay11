@@ -22,6 +22,11 @@ namespace OopsDay11.InventoryDataManagment
             RiceList = inventoryData.Rice;
             WheatList = inventoryData.Wheat;
             PulseList = inventoryData.Pulse;
+        }
+
+        public void Dislay(string file)
+        {
+            ReadJsonFile(file);
             Read(RiceList);
             Read(WheatList);
             Read(PulseList);
@@ -46,7 +51,7 @@ namespace OopsDay11.InventoryDataManagment
                     inventory.Name = Console.ReadLine();
                     Console.Write("Enter the Weight : ");
                     inventory.Weight = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Enter the Price");
+                    Console.Write("Enter the Price : ");
                     inventory.Price = Convert.ToDouble(Console.ReadLine());
                     RiceList.Add(inventory);
                     break;
@@ -55,7 +60,7 @@ namespace OopsDay11.InventoryDataManagment
                     inventory.Name = Console.ReadLine();
                     Console.Write("Enter the Weight : ");
                     inventory.Weight = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Enter the Price");
+                    Console.Write("Enter the Price : ");
                     inventory.Price = Convert.ToDouble(Console.ReadLine());
                     WheatList.Add(inventory);
                     break ;
@@ -64,7 +69,7 @@ namespace OopsDay11.InventoryDataManagment
                     inventory.Name = Console.ReadLine();
                     Console.Write("Enter the Weight : ");
                     inventory.Weight = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Enter the Price");
+                    Console.Write("Enter the Price : ");
                     inventory.Price = Convert.ToDouble(Console.ReadLine());
                     PulseList.Add(inventory);
                     break;
@@ -131,6 +136,83 @@ namespace OopsDay11.InventoryDataManagment
                             pulse.Price = editPrice;
                         }
                     }
+                    break;
+            }
+        }
+
+        public void DeleteInventoryData(string inventoryName)
+        {
+            switch (inventoryName)
+            {
+                case "Rice":
+                    Console.Write("Enter name to delete : ");
+                    string deleteRice = Console.ReadLine(); 
+                    try
+                    {
+                        foreach (var rice in RiceList)
+                        {
+                            if (rice.Name.Equals(deleteRice))
+                            {
+                                RiceList.Remove(rice);
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    break;
+                case "Wheat":
+                    Console.Write("Enter name to delete : ");
+                    string deleteWheat = Console.ReadLine();
+                    try
+                    {
+                        foreach (var wheat in WheatList)
+                        {
+                            if (wheat.Name.Equals(deleteWheat))
+                            {
+                                WheatList.Remove(wheat);
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    break;
+                case "Pulse":
+                    Console.Write("Enter name to delete : ");
+                    string deletePulse = Console.ReadLine();
+                    try
+                    {
+                        foreach (var pulse in PulseList)
+                        {
+                            if (pulse.Name.Equals(deletePulse))
+                            {
+                                PulseList.Remove(pulse);
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    break;
+            }
+        }
+
+        public void AllDelteInventoryData(string inventoryName)
+        {
+            switch (inventoryName)
+            {
+                case "Rice":
+                    RiceList.Clear();
+                    break;
+                case "Wheat":
+                    WheatList.Clear();
+                    break;
+                case "Pulse":
+                    PulseList.Clear();
                     break;
             }
         }
