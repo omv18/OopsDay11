@@ -1,0 +1,38 @@
+{
+  "A": [
+    {
+      "Name": "Amazon",
+      "NoOfShares": 100,
+      "SharePerPrice": 10
+    },
+    {
+      "Name": "Apple",
+      "NoOfShares": 50,
+      "SharePerPrice": 100
+    }
+  ],
+  "B": [
+    {
+      "Name": "IBM",
+      "NoOfShares": 40,
+      "SharePerPrice": 20
+    },
+    {
+      "Name": "Apple",
+      "NoOfShares": 10,
+      "SharePerPrice": 100
+    }
+  ],
+  "C": [
+    {
+      "Name": "Amazon",
+      "NoOfShares": 60,
+      "SharePerPrice": 10
+    },
+    {
+      "Name": "Apple",
+      "NoOfShares": 30,
+      "SharePerPrice": 100
+    }
+  ]
+}

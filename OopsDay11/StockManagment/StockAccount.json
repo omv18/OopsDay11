@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "Amazon",
+    "NoOfShares": 1000,
+    "SharePerPrice": 10
+  },
+  {
+    "Name": "Apple",
+    "NoOfShares": 900,
+    "SharePerPrice": 100
+  }
+]

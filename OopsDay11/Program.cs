@@ -1,5 +1,6 @@
 ﻿using OopsDay11.InventoryDataManagment;
 using OopsDay11.InventoryManagment;
+using OopsDay11.StockManagment;
 using System;
 namespace OopsDay11
 {
@@ -7,12 +8,15 @@ namespace OopsDay11
     {
         static string inventoryFile = @"D:\BridgeLabz\OopsDay11\OopsDay11\InventoryManagment\Inventory.json";
         static string inventoryFileData = @"D:\BridgeLabz\OopsDay11\OopsDay11\InventoryDataManagment\InventoryData.json";
+        static string fileStock = @"D:\BridgeLabz\OopsDay11\OopsDay11\StockManagment\StockAccount.json";
+        static string fileAccount = @"D:\BridgeLabz\OopsDay11\OopsDay11\StockManagment\CustomerAccount.json";
         static void Main(string[] args)
         {
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Enter 1.Inventoey Managment 2.Inventory Data managment(IDM) - Read and Display 3.IDM - ADD 4. IDM - Edit 5.IDM-Delte 6.IDM - ALL DELETE");
+                Console.WriteLine("Enter 1.Inventoey Managment 2.Inventory Data managment(IDM) - Read and Display 3.IDM - ADD 4. IDM - Edit 5.IDM-Delte 6.IDM - ALL DELETE" +
+                    "7.Display Stock");
                 int option = Convert.ToInt32(Console.ReadLine());
                 InventoryMang inventoryMang = new InventoryMang();
                 InventoryDataMange inventoryDataMange = new InventoryDataMange();
@@ -51,6 +55,10 @@ namespace OopsDay11
                         string deleteAll = Console.ReadLine();
                         inventoryDataMange.AllDelteInventoryData(deleteAll);
                         inventoryDataMange.WriteJsonFile(inventoryFileData);
+                        break;
+                    case 7:
+                        StockMangment stockMangment = new StockMangment();
+                        stockMangment.Display(fileAccount, fileStock);
                         break;
                     default:
                         flag = false;
