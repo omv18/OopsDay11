@@ -16,7 +16,7 @@ namespace OopsDay11
             while (flag)
             {
                 Console.WriteLine("Enter 1.Inventoey Managment 2.Inventory Data managment(IDM) - Read and Display 3.IDM - ADD \n 4. IDM - Edit 5.IDM-Delte 6.IDM - ALL DELETE" +
-                    "\n 7.Display Stock and Customer info 8.Buy Customer Share");
+                    "\n 7.Display Stock and Customer info 8.Buy Customer Share 9.Sell Customer Share");
                 int option = Convert.ToInt32(Console.ReadLine());
                 InventoryMang inventoryMang = new InventoryMang();
                 InventoryDataMange inventoryDataMange = new InventoryDataMange();
@@ -66,12 +66,31 @@ namespace OopsDay11
                         string customer = Console.ReadLine();   
                         Console.Write("Enter company name : ");
                         string company = Console.ReadLine();
-                        int check = stockMangment.BuyCustomer(customer, 100, company, fileCustomer);
+                        Console.Write("Enter amount : ");
+                        int amount = Convert.ToInt32(Console.ReadLine());
+                        int check = stockMangment.BuyCustomer(customer, amount, company, fileCustomer);
                         stockMangment.WriteJsonFileCustomer(fileCustomer);
                         if (check > 0)
                         {
                             stockMangment.ReadJsonFileStock(fileStock);
                             stockMangment.SellComapny(company, check);
+                            stockMangment.WriteJsonFileStock(fileStock);
+                        }
+                        break;
+                    case 9:
+                        stockMangment.ReadJsonFileCustomer(fileCustomer);
+                        Console.Write("Enter Customer name : ");
+                        string customerSell = Console.ReadLine();
+                        Console.Write("Enter company name : ");
+                        string companys = Console.ReadLine();
+                        Console.Write("Enter amount : ");
+                        int amounts = Convert.ToInt32(Console.ReadLine());
+                        int checks = stockMangment.SellCustomer(customerSell, amounts, companys);
+                        stockMangment.WriteJsonFileCustomer(fileCustomer);
+                        if (checks > 0)
+                        {
+                            stockMangment.ReadJsonFileStock(fileStock);
+                            stockMangment.BuyComapny(companys, checks);
                             stockMangment.WriteJsonFileStock(fileStock);
                         }
                         break;
@@ -83,7 +102,3 @@ namespace OopsDay11
         }
     }
 }
-
-
-
-//{"Amazon":[{"Name":"Amazon","NoOfShares":1004,"SharePerPrice":10}],"IBM":[{"Name":"IBM","NoOfShares":400,"SharePerPrice":20}],"Apple":[{"Name":"Apple","NoOfShares":600,"SharePerPrice":100}]}

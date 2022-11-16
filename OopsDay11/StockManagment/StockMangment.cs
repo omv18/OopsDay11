@@ -41,7 +41,7 @@ namespace OopsDay11.StockManagment
         }
 
 
-        public void SellComapny(string company, int num) 
+        public void SellComapny(string company, int num)
         {
             switch (company)
             {
@@ -61,6 +61,31 @@ namespace OopsDay11.StockManagment
                     foreach (var item in Apple_List)
                     {
                         item.NoOfShares -= num;
+                    }
+                    break;
+            }
+        }
+
+        public void BuyComapny(string company, int num)
+        {
+            switch (company)
+            {
+                case "Amazon":
+                    foreach (var item in Amazon_List)
+                    {
+                        item.NoOfShares += num;
+                    }
+                    break;
+                case "IBM":
+                    foreach (var item in IBM_List)
+                    {
+                        item.NoOfShares += num;
+                    }
+                    break;
+                case "Apple":
+                    foreach (var item in Apple_List)
+                    {
+                        item.NoOfShares += num;
                     }
                     break;
             }
@@ -168,6 +193,61 @@ namespace OopsDay11.StockManagment
                     if (flag)
                     {
                         value += NewBuyCustomer(name, amount, fileCustomer, C_List);
+                    }
+                    break;
+            }
+            return value;
+        }
+
+        public int SellCustomer(string option, int amount, string name)
+        {
+            int value = 0;
+            switch (option)
+            {
+                case "A":
+                    foreach (var buy in A_List)
+                    {
+
+                        if (buy.Name.Equals(name))
+                        {
+                            if (buy.SharePerPrice > amount) break;
+                            if (amount >= buy.SharePerPrice)
+                            {
+                                int num = amount / buy.SharePerPrice;
+                                buy.NoOfShares -= num;
+                                value += num;
+                            }
+                        }
+                    }
+                    break;
+                case "B":
+                    foreach (var buy in B_List)
+                    {
+                        if (buy.Name.Equals(name))
+                        {
+                            if (buy.SharePerPrice > amount) break;
+                            if (amount >= buy.SharePerPrice)
+                            {
+                                int num = amount / buy.SharePerPrice;
+                                buy.NoOfShares -= num;
+                                value += num;
+                            }
+                        }
+                    }
+                    break;
+                case "C":
+                    foreach (var buy in C_List)
+                    {
+                        if (buy.Name.Equals(name))
+                        {
+                            if (buy.SharePerPrice > amount) break;
+                            if (amount >= buy.SharePerPrice)
+                            {
+                                int num = amount / buy.SharePerPrice;
+                                buy.NoOfShares -= num;
+                                value += num;
+                            }
+                        }
                     }
                     break;
             }
