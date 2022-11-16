@@ -8,8 +8,10 @@ namespace OopsDay11.StockManagment
 {
     internal class StockAccount
     {
-        public string Name { get; set; }
-        public int NoOfShares { get; set; }
-        public int SharePerPrice { get; set; }  
+        public List<StockData> Amazon { get; set; }
+        public List<StockData> IBM { get; set; }
+        public List<StockData> Apple { get; set; }
+
+
     }
 }

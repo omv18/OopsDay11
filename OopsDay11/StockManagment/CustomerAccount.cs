@@ -8,9 +8,9 @@ namespace OopsDay11.StockManagment
 {
     internal class CustomerAccount
     {
-        public string Name { get; set; }
-        public int NoOfShares { get; set; }
-        public int SharePerPrice { get; set; }
+        public List<CustomerData> A { get; set; }
+        public List<CustomerData> B { get; set; }
+        public List<CustomerData> C { get; set; }
 
     }
 }

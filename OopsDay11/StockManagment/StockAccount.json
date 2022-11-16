@@ -1,12 +1,1 @@
-[
-  {
-    "Name": "Amazon",
-    "NoOfShares": 1000,
-    "SharePerPrice": 10
-  },
-  {
-    "Name": "Apple",
-    "NoOfShares": 900,
-    "SharePerPrice": 100
-  }
-]
+{"Amazon":[{"Name":"Amazon","NoOfShares":979,"SharePerPrice":10}],"IBM":[{"Name":"IBM","NoOfShares":370,"SharePerPrice":20}],"Apple":[{"Name":"Apple","NoOfShares":586,"SharePerPrice":100}]}

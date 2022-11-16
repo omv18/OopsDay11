@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using OopsDay11.InventoryDataManagment;
 using OopsDay11.InventoryManagment;
 using System;
@@ -6,50 +7,218 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace OopsDay11.StockManagment
 {
     internal class StockMangment
     {
-        CustomerAccountList customerAccountList;
-        List<CustomerAccount> A_List;
-        List<CustomerAccount> B_List;
-        List<CustomerAccount> C_List;
+        CustomerAccount customerAccount;
+        StockAccount stockAccount;
+        List<CustomerData> A_List;
+        List<CustomerData> B_List;
+        List<CustomerData> C_List;
+        List<StockData> Amazon_List;
+        List<StockData> IBM_List;
+        List<StockData> Apple_List;
 
-        public void ReadJsonFileAccount(string file)
+        public void ReadJsonFileCustomer(string file)
         {
             var jsonData = File.ReadAllText(file);
-            customerAccountList = JsonConvert.DeserializeObject<CustomerAccountList>(jsonData);
-            A_List = customerAccountList.A;
-            B_List = customerAccountList.B;
-            C_List = customerAccountList.C;
+            customerAccount = JsonConvert.DeserializeObject<CustomerAccount>(jsonData);
+            A_List = customerAccount.A;
+            B_List = customerAccount.B;
+            C_List = customerAccount.C;
         }
-        public void ReadJSonFile(string file)
+
+        public void ReadJsonFileStock(string file)
         {
-            var JsonData = File.ReadAllText(file);
-            List<CustomerAccount> inventories = JsonConvert.DeserializeObject<List<CustomerAccount>>(JsonData);
-            foreach (var data in inventories)
+            var jsonData = File.ReadAllText(file);
+            stockAccount = JsonConvert.DeserializeObject<StockAccount>(jsonData);
+            Amazon_List = stockAccount.Amazon;
+            IBM_List = stockAccount.IBM;
+            Apple_List = stockAccount.Apple;
+        }
+
+
+        public void SellComapny(string company, int num) 
+        {
+            switch (company)
             {
-                Console.WriteLine(data.Name + "  " + data.NoOfShares + "  " + data.SharePerPrice);
+                case "Amazon":
+                    foreach (var item in Amazon_List)
+                    {
+                        item.NoOfShares -= num;
+                    }
+                    break;
+                case "IBM":
+                    foreach (var item in IBM_List)
+                    {
+                        item.NoOfShares -= num;
+                    }
+                    break;
+                case "Apple":
+                    foreach (var item in Apple_List)
+                    {
+                        item.NoOfShares -= num;
+                    }
+                    break;
             }
         }
-
-        public void Display(string file,string file1)
+        public int NewBuyCustomer(string name, int amount, string fileCustomer, List<CustomerData> list)
         {
-            ReadJsonFileAccount(file);
-            Read(A_List);
-            Read(B_List);
-            Read(C_List);
-            Console.WriteLine();
-            ReadJSonFile(file1);
+            int value = 0;
+            CustomerData customerData = new CustomerData();
+            switch (name)
+            {
+                case "Amazon":
+                    customerData.Name = name;
+                    int num = amount / 10;
+                    value += num;
+                    customerData.NoOfShares = num;
+                    customerData.SharePerPrice = 10;
+                    list.Add(customerData);
+                    WriteJsonFileCustomer(fileCustomer);
+                    break;
+
+                case "IBM":
+                    customerData.Name = name;
+                    int num1 = amount / 20;
+                    value += num1;
+                    customerData.NoOfShares = num1;
+                    customerData.SharePerPrice = 20;
+                    list.Add(customerData);
+                    WriteJsonFileCustomer(fileCustomer);
+                    break;
+                case "Apple":
+                    customerData.Name = name;
+                    int num2 = amount / 100;
+                    value += num2;
+                    customerData.NoOfShares = num2;
+                    customerData.SharePerPrice = 100;
+                    list.Add(customerData);
+                    WriteJsonFileCustomer(fileCustomer);
+                    break;
+            }
+            return value;
         }
 
-        public void Read(List<CustomerAccount> customer)
+        public int BuyCustomer(string option, int amount, string name, string fileCustomer)
+        {
+            int value = 0;
+            bool flag = true;
+            switch (option)
+            {
+                case "A":
+                    foreach (var buy in A_List)
+                    {
+                        
+                        if (buy.Name.Equals(name))
+                        {
+                            flag = false;
+                            if (buy.SharePerPrice > amount) break;
+                            if(amount >= buy.SharePerPrice)
+                            {
+                                int num = amount / buy.SharePerPrice;
+                                buy.NoOfShares += num;
+                                value += num;
+                            }
+                        }
+                    }
+                    if (flag)
+                    {
+                        value += NewBuyCustomer(name, amount, fileCustomer, A_List);
+                    }
+                    break;
+                case "B":
+                    foreach (var buy in B_List)
+                    {
+                        if (buy.Name.Equals(name))
+                        {
+                            flag = false;
+                            if (buy.SharePerPrice > amount) break;
+                            if (amount >= buy.SharePerPrice)
+                            {
+                                int num = amount / buy.SharePerPrice;
+                                buy.NoOfShares += num;
+                                value += num;
+                            }
+                        }
+                    }
+                    if (flag)
+                    {
+                        value += NewBuyCustomer(name, amount, fileCustomer, B_List);
+                    }
+                    break;
+                case "C":
+                    foreach (var buy in C_List)
+                    {
+                        if (buy.Name.Equals(name))
+                        {
+                            flag = false;
+                            if (buy.SharePerPrice > amount) break;
+                            if (amount >= buy.SharePerPrice)
+                            {
+                                int num = amount / buy.SharePerPrice;
+                                buy.NoOfShares += num;
+                                value += num;
+                            }
+                        }
+                    }
+                    if (flag)
+                    {
+                        value += NewBuyCustomer(name, amount, fileCustomer, C_List);
+                    }
+                    break;
+            }
+            return value;
+        }
+
+
+        public void Display(string file1, string file2)
+        {
+            ReadJsonFileCustomer(file1);
+            Console.WriteLine("Coustomer Name : A ");
+            ReadC(A_List);
+            Console.WriteLine("Coustomer Name : B ");
+            ReadC(B_List);
+            Console.WriteLine("Coustomer Name : C ");
+            ReadC(C_List);
+            Console.WriteLine();
+            ReadJsonFileStock(file2);
+            Console.WriteLine("Company Name : Amazon ");
+            ReadS(Amazon_List);
+            Console.WriteLine("Company Name : IBM ");
+            ReadS(IBM_List);
+            Console.WriteLine("Company Name : Apple ");
+            ReadS(Apple_List);
+       }
+
+        public void ReadS(List<StockData> customer)
         {
             foreach(var data in customer)
             {
                 Console.WriteLine(data.Name + " "+data.NoOfShares+ " "+data.SharePerPrice);
             }
+        }
+
+        public void ReadC(List<CustomerData> customer)
+        {
+            foreach (var data in customer)
+            {
+                Console.WriteLine(data.Name + " " + data.NoOfShares + " " + data.SharePerPrice);
+            }
+        }
+
+        public void WriteJsonFileCustomer(string file)
+        {
+            var json = JsonConvert.SerializeObject(customerAccount);
+            File.WriteAllText(file, json);
+        }
+        public void WriteJsonFileStock(string file)
+        {
+            var json = JsonConvert.SerializeObject(stockAccount);
+            File.WriteAllText(file, json);
         }
     }
 }
